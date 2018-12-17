@@ -5,13 +5,177 @@
 <div class="guo-subclass">
     <h1><a href="#">消费列表</a></h1>
 </div>
-<div>
-    <table>
-    <tr>
-        <td>序号</td>
-        <td>流水号</td>
-    </tr>
-    </table>
+<div class="guo-sou-1">
+    <button type="submit">导出数据</button>
+    <!--<div class="guo-sou-2"><button type="submit">导出数据</button></div>-->
+    <div class="guo-sou-3">
+        <form method="post" action="{% url 'xproject:transaction'%}">
+            {% csrf_token %}
+            <label>流水号</label>
+            <input type="text" name="number" value="" class="guo-input-1">
+            <label>设备号</label>
+            <input type="text" name="Devicenumber" value="" class="guo-input-1">
+            <!--<label>支付订单号：</label>-->
+            <!--<input type="text" name="POnumber" value="" class="guo-input-1">-->
+            <label>交易完成时间</label>
+                <input type="date" name="starttime" value="" class="guo-input-2">
+                <input type="date" name="endtime" value="" class="guo-input-2">
+            <label>支付状态</label>
+            <select name="State" class="guo-select-1">
+                <option value="">-----</option>
+                <option value="to poy">to poy</option>
+                <option value="To be paid">To be paid</option>
+                <option value="Refund">Refund</option>
+            </select>
+            <input type="submit" id="guo-sou-ajax" value="搜索" />
+        </form>
+    </div>
 </div>
+<div class="guo-list">
+    <table class="guo-table-1">
+    <tr>
+        <th class="guo-td-1">序号</th>
+        <th class="guo-td-2">流水号</th>
+        <th class="guo-td">用户昵称</th>
+        <th class="guo-td">设备号</th>
+        <th class="guo-td">状态</th>
+        <th class="guo-td">交易类型</th>
+        <th class="guo-td">交易金额</th>
+        <th class="guo-td">交易完成时间</th>
+        <th class="guo-td">操作</th>
+    </tr>
+        {% for subclass in subclass_s %}
+            <tr>
+            <td class="guo-td-1">{{ subclass.id }}</td>
+            <td class="guo-td-2">{{ subclass.number }}</td>
+            <td class="guo-td">{{ subclass.name }}</td>
+            <td class="guo-td">{{ subclass.Devicenumber }}</td>
+            <td class="guo-td">{{ subclass.State }}</td>
+            <td class="guo-td">{{ subclass.Type }}</td>
+            <td class="guo-td">{{ subclass.Remarks }}</td>
+            <td class="guo-td">{{ subclass.endtime|date:'Y-m-d H:m'}}</td>
+             <td class="guo-td">
+                 <div>
+                     <form method="post" action="{% url 'xproject:edit'%}">
+                            {% csrf_token %}
+                         <input  type="hidden" name="id" value="{{ subclass.id }}">
+                         <input type="submit" value="编辑">
+                    </form>
+                 </div>
+             </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+    <div class="pagination">
+        <span class="step-links_s">
+            {% if subclass_s.has_previous %}
+                <button type="submit"><a href="?page=1">首页</a></button>
+            {% else %}
+                <button type="button"><a style="color:gray;" href="#">首页</a></button>
+            {% endif %}
+
+            </span>
+        <span class="step-links_s">
+            {% if subclass_s.has_previous %}
+                <button type="submit"><a href="?page={{ subclass_s.previous_page_number }}">上一页</a></button>
+            {% else %}
+                <button type="button"><a style="color:gray;" href="#">上一页</a></button>
+            {% endif %}
+
+            <span class="step-links_s">
+                Page {{ subclass_s.number }} of {{ subclass_s.paginator.num_pages }}
+            </span>
+
+            {% if subclass_s.has_next %}
+                <button type="submit" id="guo-page-report"><a href="?page={{ subclass_s.next_page_number }}">下一页</a></button>
+            {% else %}
+                <button type="button"><a style="color:gray;" href="#">下一页</a></button>
+            {% endif %}
+        </span>
+        <span class="step-links_s">
+            {% if subclass_s.has_next %}
+                <button type="submit"><a href="?page={{ subclass_s.paginator.num_pages }}">末页</a></button>
+            {% else %}
+                <button type="button"><a style="color:gray;" href="#">末页</a></button>
+            {% endif %}
+
+        </span>
+        <form method="get" action="{% url 'xproject:transaction' %}" class="guo-form-page">
+            <input class="guo-page-input-1" name="page" type="text" >
+            <button type="submit">跳转</button>
+        </form>
+    </div>
+    </div>
+
 {% endblock %}
 
+<script>
+function clickToSearchReport() {
+    $('#guo-page-report').click(function() {
+            $.ajax({
+                type: 'GET',
+                url: $(this).attr('href'),
+                data: {
+                    'year': $('#select-year').val(),
+                    'case_id': $('#select-case').val(),
+                    'csrfmiddlewaretoken': csrftoken
+                },
+                success: function(data) {
+                    if (data != 0) {
+                        var latest_report = JSON.parse(data);
+//                        console.log(latest_report)
+                        $('#report-title').text(trans('Case') + ': ' + latest_report.case_name + ' | ' + trans('Date') + ': ' + latest_report.year + ' | ' + trans('Count') + ': ' + latest_report.count);
+
+                        var tr_html = '';
+                        var sentence_modal_html = '';
+                        // 移除上一次查询插入的所有modal
+                        $('.modal').remove();
+
+                        for (var i = 0; i < latest_report.latest_reports_info.length; i++) {
+                            report_info = latest_report.latest_reports_info[i];
+
+                            if (report_info.status_code == 200) {
+                                status_label = 'label-success';
+                            }
+                            else {
+                                status_label = 'label-danger';
+                            }
+
+                            tr_html += '<tr><td class="block-td">'
+                                    + report_info.name + '</td><td>'
+                                    + report_info.order + '</td><td>'
+                                    + report_info.type + '</td><td><span class="label ' + status_label + '">'
+                                    + report_info.status_msg + '</span></td><td>'
+                                    + report_info.run_time + '</td><td>'
+                                    + report_info.end_time + '</td><td>'
+                                    + report_info.time_consuming + '</td><td class="block-td" style="white-space: pre-wrap;">'
+                                    + report_info.results + '</td><td>'
+                                    + '<a id="view-sentence-' + report_info.id + '" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#sentence-' + report_info.id + '">' + trans('View Sentence') + '</a></td></tr>';
+//                            console.log(tr_html);
+                            sentence_modal_html += '<div class="modal inmodal" id="sentence-' + report_info.id + '" tabindex="-1" role="dialog" aria-hidden="true">'+
+                                        '<div class="modal-dialog">'+
+                                            '<div class="modal-content">'+
+                                                '<div class="modal-header">'+
+                                                    '<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>'+
+                                                    '<h4 class="modal-title">' + report_info.name + '</h4>'+
+                                                '</div>'+
+                                                '<div class="modal-body">'+
+                                                    '<textarea class="sentence" readonly>' + report_info.sentence + '</textarea>'+
+                                                '</div>'+
+                                                '<div class="modal-footer">'+
+                                                    '<button type="button" class="btn btn-white" data-dismiss="modal">' + trans('Close') + '</button>'+
+                                                '</div>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>';
+                        }
+                        $('tbody').html(tr_html);
+                        $('body').append(sentence_modal_html);
+                    }
+                },
+            })
+        <!--}-->
+    })
+}
+</script>

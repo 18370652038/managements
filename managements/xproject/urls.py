@@ -20,5 +20,7 @@ from . import views #managements.xproject会报错改成.
 app_name = 'xproject'
 urlpatterns = [
     url(r'^$', views.index,name='index'),
-    url(r'^transaction/1/$',views.transaction,name='transaction')
+    url(r'^transaction/1/$',views.transaction,name='transaction'),
+    url(r'^edit/subclaa$',views.subclass_edit,name='edit'),
+    url(r'^edit/update$',views.update,name='updata'),
 ]

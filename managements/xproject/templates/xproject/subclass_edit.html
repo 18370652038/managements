@@ -1,0 +1,36 @@
+{% extends 'xproject/base.html' %}
+{% block title %} 编辑 {% endblock %}
+{% block tag %}编辑{% endblock %}
+{% block content %}
+
+<div class="guo-edit-title">
+    <h3>编辑界面</h3>
+</div>
+<form method="post" action="{% url 'xproject:updata' %}">
+    {% csrf_token %}
+<!--{{ form.non_field_errors }}-->
+    {% for field in form %}
+<div class="guo-from-deit">
+    <div class="guo-deit-lable-div">
+        <center style="color:red;"><h3>{{ field.errors }}</h3></center>
+        <label class="guo-deit-lable" for="{{ field.id_for_label }}">{{ field.label }}</label>
+    </div>
+    <div class="guo-deit-data">
+         {{ field }}
+    </div>
+</div>
+    {% endfor %}
+<div class="guo-button-div">
+        <input  type="hidden" name="id" value="{{ text.id }}">
+        <button type="submit" class="guo-button-ti">
+            提交更改
+        </button>
+</div>
+</form>
+<div class="guo-button-div">
+        <a href="{% url 'xproject:transaction' %}" class="guo-button-ti2">
+            返回页面
+            </a>
+</div>
+
+{% endblock %}
