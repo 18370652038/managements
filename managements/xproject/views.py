@@ -129,5 +129,3 @@ def update(request):
             error = "number 不能为空"
             return render(request,'xproject/subclass_edit.html',locals())
 
-
-        pass
