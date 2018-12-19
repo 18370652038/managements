@@ -2,6 +2,28 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 # Create your models here.
 
+
+
+class Organization(models.Model):
+    cname = models.CharField(verbose_name=_("name"),null=True,max_length=50)
+    ename = models.CharField(verbose_name=_("English Name"),null=True,max_length=50)
+    country = models.CharField(verbose_name=_("Country"),null=True,max_length=20)
+    province = models.CharField(verbose_name=_("Province"),null=True,max_length=20)
+    city = models.CharField(verbose_name=_("city"),null=True,max_length=50)
+    district = models.CharField(verbose_name=_("district"),null=True,max_length=50)
+    address = models.CharField(verbose_name=_("address"),null=True,max_length=50)
+    website = models.URLField(verbose_name=_("website"),max_length=200,null=True)
+    telphone = models.CharField(verbose_name=_("telphone"),max_length=30,null=True)
+    room = models.IntegerField(verbose_name=_("room"),max_length=8,null=True)
+    device = models.IntegerField(verbose_name=_('device'),max_length=8,null=True)
+
+    class Meta:
+        verbose_name = _('organization')
+        verbose_name_plural = _('organization')
+
+    def __str__(self):
+        return 'Organization'
+
 class DeviceInfo(models.Model):
     DeviceID = models.CharField(verbose_name=_("DeviceID"), max_length=20, unique=True)
     Eey = models.CharField(verbose_name=_("Eey"), max_length=30)
@@ -12,22 +34,15 @@ class DeviceInfo(models.Model):
     RegTimes = models.DateTimeField(verbose_name=_("RegTimes"), auto_now_add=True)
     RecTimes = models.DateTimeField(verbose_name=_("RecTimes"), auto_now=True)
     BeatTimes = models.DateTimeField(verbose_name=_("BeatTimes"), auto_now=True)
+    organization = models.ForeignKey(Organization,on_delete=models.CASCADE)
+
     class Meta:
-        verbose_name = _('DeviceInfo')
-        verbose_name_plural = _('DeviceInfo')
+        verbose_name = _('deviceInfo')
+        verbose_name_plural = _('deviceInfo')
 
     def __str__(self):
         return '设备信息'
 
-class Organization(models.Model):
-    cname = models.CharField(verbose_name=_("中文名"),null=True,max_length=50)
-    ename = models.CharField(verbose_name=_("English Name"),null=True,max_length=50)
-    country = models.CharField(verbose_name=_("Country"),null=True,max_length=20)
-    province = models.CharField(verbose_name=_("Province"),null=True,max_length=20)
-    city = models.CharField(verbose_name=_("city"),null=True,max_length=50)
-    district = models.CharField(verbose_name=_("district"),null=True,max_length=50)
-    address = models.CharField(verbose_name=_("address"),null=True,max_length=50)
-    website = models.URLField(validators=_("website"))
 
 class subclass_details(models.Model):
     STATE_CHOICES = (
@@ -38,9 +53,6 @@ class subclass_details(models.Model):
 
     number = models.CharField(verbose_name=('Serial number'),max_length=30,unique=True)
     name = models.CharField(verbose_name=_('name'),max_length=120)
-    Devicename = models.CharField(verbose_name=_('Device name'),max_length=30)
-    Areaname = models.CharField(verbose_name=_('Area name'),max_length=120)
-    Devicenumber = models.IntegerField(verbose_name=_('Device number'),max_length=10)
     State = models.CharField(verbose_name=_('State'),max_length=10,default='To be paid',choices=STATE_CHOICES)
     Type = models.CharField(verbose_name=_('Transaction type'),max_length=10,default='BANK',choices=TYPE_CHOICES)
     Money = models.DecimalField(verbose_name=_('Amount of money'),decimal_places=2,max_digits=8)
@@ -48,8 +60,8 @@ class subclass_details(models.Model):
     paymenttime = models.DateTimeField(verbose_name=_("Payment time"),auto_now_add=True)
     endtime = models.DateTimeField(verbose_name=_("Payment time"),auto_now=True)
     POnumber = models.IntegerField(verbose_name=_("Payment order number"),max_length=20)
-    Remarks = models.TextField(verbose_name=_('Remarks'),max_length=100,null=True,blank=True)
     deviceInfo = models.ForeignKey(DeviceInfo,on_delete=models.CASCADE)
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = _('subclass details')

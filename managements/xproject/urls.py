@@ -1,4 +1,4 @@
-"""managements URL Configuration
+"""Wellhotel URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/
@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from . import views #managements.xproject会报错改成.
+from . import views #Wellhotel.xproject会报错改成.
 
 app_name = 'xproject'
 urlpatterns = [
@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^transaction/1/$',views.transaction,name='transaction'),
     url(r'^edit/subclaa$',views.subclass_edit,name='edit'),
     url(r'^edit/update$',views.update,name='updata'),
+    url(r'^DeviceInf$',views.DeviceInf,name='DeviceInf')
 ]

@@ -5,8 +5,6 @@ from django.contrib.auth.decorators import login_required
 from .forms import *
 import datetime
 
-
-# Create your views here.
 @login_required
 def index(request):
     current_user = request.user
@@ -127,5 +125,8 @@ def update(request):
         text = models.subclass_details.objects.get(pk=id)
         if number == '':
             error = "number 不能为空"
-            return render(request,'xproject/subclass_edit.html',locals())
+        return render(request,'xproject/subclass_edit.html',locals())
 
+
+def DeviceInf(request):
+    pass
