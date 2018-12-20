@@ -82,10 +82,9 @@ def subclass_edit(request):
         text = models.subclass_details.objects.get(pk=id)
         text = {
             'number':text.number,
-            'name':text.name,
-            'Devicename':text.Devicename,
-            'Areaname':text.Areaname,
-            'Devicenumber':text.Devicenumber,
+            'name':text.normalUser.username,
+            'Devicename':text.deviceInfo.DeviceID,
+            'Areaname':text.organization.cname,
             'State':text.State,
             'Type':text.Type,
             'Money':text.Money,
@@ -93,7 +92,6 @@ def subclass_edit(request):
             'paymenttime':text.paymenttime,
             'endtime':text.endtime,
             'POnumber':text.POnumber,
-            'Remarks':text.Remarks
         }
         form = editForm(text)
         if form.is_valid():

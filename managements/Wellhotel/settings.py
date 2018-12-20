@@ -103,6 +103,9 @@ DATABASES = {
     },
 }
 
+#使用自己继承的user模型
+AUTH_USER_MODEL = "xproject.NormalUser"
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
