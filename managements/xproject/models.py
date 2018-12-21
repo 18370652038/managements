@@ -100,7 +100,7 @@ class Price(models.Model):
     class Meta:
         verbose_name = _('price')
         verbose_name_plural = _("price")
-        # ordering = ['starttime']
+        ordering = ['starttime']
 
     def __str__(self):
         return 'price'

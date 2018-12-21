@@ -1,0 +1,84 @@
+{% extends 'xproject/base.html' %}
+{% block title %} 查询 {% endblock %}
+{% block tag %} 查询 {% endblock %}
+{% block content %}
+
+<div class="guo-edit-title">
+    <h3>查询界面</h3>
+</div>
+    <div class="guo-list-all">
+        <table class="guo-table-all">
+            <tr>
+                <th class="guo-td-all"><center>序号</center></th>
+                <th class="guo-td-all"><center>流水号</center></th>
+                <th class="guo-td-all"><center>用户昵称</center></th>
+                <th class="guo-td-all"><center>设备号</center></th>
+                <th class="guo-td-all"><center>状态</center></th>
+                <th class="guo-td-all"><center>交易类型</center></th>
+                <th class="guo-td-all"><center>交易金额</center></th>
+                <th class="guo-td-all"><center>交易完成时间</center></th>
+            </tr>
+            <tr>
+                <td class="guo-td-all"><center>{{ text.id }}</center></td>
+                <td class="guo-td-all"><center>{{ text.number }}</center></td>
+                <td class="guo-td-all"><center>{{ text.normalUser.username }}</center></td>
+                <td class="guo-td-all"><center>{{ text.deviceInfo.DeviceID }}</center></td>
+                <td class="guo-td-all"><center>{{ text.State }}</center></td>
+                <td class="guo-td-all"><center>{{ text.Type }}</center></td>
+                <td class="guo-td-all"><center>{{ text.Money }}</center></td>
+                <td class="guo-td-all"><center>{{ text.endtime|date:'Y-m-d H:m' }}</center></td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+    <div class="guo-list-all">
+        <table class="guo-table-all">
+            <tr>
+                <th class="guo-td-all-1"><center>交易开始时间</center></th>
+                <th class="guo-td-all-1"><center>交易完成时间</center></th>
+                <th class="guo-td-all-1"><center>交易使用时间</center></th>
+                <th class="guo-td-all-1"><center>交易金额</center></th>
+                <th class="guo-td-all-1"><center>交易类型</center></th>
+                <th class="guo-td-all-1"><center>每小时价钱</center></th>
+                <th class="guo-td-all-1"><center>交易金额</center></th>
+                <th class="guo-td-all-1"><center>交易完成时间</center></th>
+            </tr>
+            <tr>
+                <td class="guo-td-all-1"><center>{{ text.paymenttime|date:'Y-m-d H:m' }}</center></td>
+                <td class="guo-td-all-1"><center>{{ text.endtime|date:'Y-m-d H:m' }}</center></td>
+                <td class="guo-td-all-1"><center>{{ text.Duration }}秒</center></td>
+                <td class="guo-td-all-1"><center>{{ text.Money }}元</center></td>
+                <td class="guo-td-all-1"><center>{{ text.Type }}</center></td>
+                <td class="guo-td-all-1"><center>{{ text.organization.price_set.filter(organization=text.organization).price}}</center></td>
+                <td class="guo-td-all-1"><center>{{ text.Money }}</center></td>
+                <td class="guo-td-all-1"><center>{{ text.endtime|date:'Y-m-d H:m' }}</center></td>
+            </tr>
+
+        </table>
+    </div>
+{% comment %}
+<!--<div class="guo-from-deit">-->
+    <!--<div class="guo-deit-lable-div">-->
+        <!--<center style="color:red;"><h3>{{ field.errors }}</h3></center>-->
+        <!--<label class="guo-deit-lable" for="{{ field.id_for_label }}">{{ field.label }}</label>-->
+    <!--</div>-->
+    <!--<div class="guo-deit-data">-->
+         <!--{{ field }}-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="guo-button-div">-->
+        <!--<input  type="hidden" name="id" value="{{ text.id }}">-->
+        <!--<button type="submit" class="guo-button-ti">-->
+            <!--提交更改-->
+        <!--</button>-->
+<!--</div>-->
+<!--</form>-->
+<!--<div class="guo-button-div">-->
+        <!--<a href="{% url 'xproject:transaction' %}" class="guo-button-ti2">-->
+            <!--返回页面-->
+            <!--</a>-->
+<!--</div>-->
+{% endcomment %}
+
+{% endblock %}

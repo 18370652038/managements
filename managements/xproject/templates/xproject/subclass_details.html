@@ -34,32 +34,32 @@
 <div class="guo-list">
     <table class="guo-table-1">
     <tr>
-        <th class="guo-td-1">序号</th>
-        <th class="guo-td-2">流水号</th>
-        <th class="guo-td">用户昵称</th>
-        <th class="guo-td">设备号</th>
-        <th class="guo-td">状态</th>
-        <th class="guo-td">交易类型</th>
-        <th class="guo-td">交易金额</th>
-        <th class="guo-td">交易完成时间</th>
-        <th class="guo-td">操作</th>
+        <th class="guo-td"><center>序号</center></th>
+        <th class="guo-td"><center>流水号</center></th>
+        <th class="guo-td"><center>用户昵称</center></th>
+        <th class="guo-td"><center>设备号</center></th>
+        <th class="guo-td"><center>状态</center></th>
+        <th class="guo-td"><center>交易类型</center></th>
+        <th class="guo-td"><center>交易金额</center></th>
+        <th class="guo-td"><center>交易完成时间</center></th>
+        <th class="guo-td"><center>操作</center></th>
     </tr>
         {% for subclass in subclass_s %}
             <tr>
-            <td class="guo-td-1">{{ subclass.id }}</td>
-            <td class="guo-td-2">{{ subclass.number }}</td>
-            <td class="guo-td">{{ subclass.normalUser.username }}</td>
-            <td class="guo-td">{{ subclass.deviceInfo.DeviceID }}</td>
-            <td class="guo-td">{{ subclass.State }}</td>
-            <td class="guo-td">{{ subclass.Type }}</td>
-            <td class="guo-td">{{ subclass.Money }}</td>
-            <td class="guo-td">{{ subclass.endtime|date:'Y-m-d H:m'}}</td>
+                <td class="guo-td-1"><center>{{ subclass.id }}</center></td>
+                <td class="guo-td-2"><center>{{ subclass.number }}</center></td>
+                <td class="guo-td"><center>{{ subclass.normalUser.username }}</center></td>
+                <td class="guo-td"><center>{{ subclass.deviceInfo.DeviceID }}</center></td>
+                <td class="guo-td"><center>{{ subclass.State }}</center></td>
+                <td class="guo-td"><center>{{ subclass.Type }}</center></td>
+                <td class="guo-td"><center>{{ subclass.Money }}元</center></td>
+                <td class="guo-td"><center>{{ subclass.endtime|date:'Y-m-d H:m'}}</center></td>
              <td class="guo-td">
                  <div>
-                     <form method="post" action="{% url 'xproject:edit'%}">
+                     <form method="post" action="{% url 'xproject:all'%}">
                             {% csrf_token %}
                          <input  type="hidden" name="id" value="{{ subclass.id }}">
-                         <input type="submit" value="编辑">
+                         <center><input type="submit" value="查看详细信息"></center>
                     </form>
                  </div>
              </td>

@@ -21,7 +21,6 @@ app_name = 'xproject'
 urlpatterns = [
     url(r'^$', views.index,name='index'),
     url(r'^transaction/1/$',views.transaction,name='transaction'),
-    url(r'^edit/subclaa$',views.subclass_edit,name='edit'),
-    url(r'^edit/update$',views.update,name='updata'),
+    url(r'^all/subclaa$',views.subclass_all,name='all'),
     url(r'^DeviceInf$',views.DeviceInf,name='DeviceInf')
 ]

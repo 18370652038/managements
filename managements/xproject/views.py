@@ -76,54 +76,52 @@ def transaction(request):
         return render(request,'xproject/subclass_details.html',locals())
 
 @login_required
-def subclass_edit(request):
+def subclass_all(request):
     if request.method == 'POST':
         id = request.POST.get('id')
         text = models.subclass_details.objects.get(pk=id)
-        text = {
-            'number':text.number,
-            'name':text.normalUser.username,
-            'Devicename':text.deviceInfo.DeviceID,
-            'Areaname':text.organization.cname,
-            'State':text.State,
-            'Type':text.Type,
-            'Money':text.Money,
-            'Duration':text.Duration,
-            'paymenttime':text.paymenttime,
-            'endtime':text.endtime,
-            'POnumber':text.POnumber,
-        }
-        form = editForm(text)
-        if form.is_valid():
-            return render(request,'xproject/subclass_edit.html',locals())
-        form = editForm()
-        return render(request,'xproject/subclass_edit.html',locals())
-
+        # text = {
+        #     'number':text.number,
+        #     'name':text.normalUser.username,
+        #     'Devicename':text.deviceInfo.DeviceID,
+        #     'Areaname':text.organization.cname,
+        #     'State':text.State,
+        #     'Type':text.Type,
+        #     'Money':text.Money,
+        #     'Duration':text.Duration,
+        #     'paymenttime':text.paymenttime,
+        #     'endtime':text.endtime,
+        #     'POnumber':text.POnumber,
+        # }
+        # form = editForm(text)
+        # if form.is_valid():
+        #     return render(request,'xproject/subclass_edit.html',locals())
+        # form = editForm()
+        return render(request,'xproject/subclass_all.html',locals())
     else:
-        form = editForm()
-        return render(request,'xproject/subclass_edit.html',locals())
+        return render(request,'xproject/subclass_all.html',locals())
 
-@login_required
-def update(request):
-    if request.method=='POST':
-        id = request.POST.get('id')
-        number = request.POST.get('number')
-        name = request.POST.get('name')
-        Devicename = request.POST.get('Devicename')
-        Areanam = request.POST.get('Areanam')
-        Devicenumber = request.POST.get('Devicenumber')
-        State = request.POST.get('State')
-        Type = request.POST.get('Type')
-        Money = request.POST.get('Money')
-        Duration = request.POST.get('Duration')
-        paymenttime = request.POST.get('paymenttime')
-        endtime = request.POST.get('endtime')
-        POnumber = request.POST.get('POnumber')
-        Remarks = request.POST.get('Remarks')
-        text = models.subclass_details.objects.get(pk=id)
-        if number == '':
-            error = "number 不能为空"
-        return render(request,'xproject/subclass_edit.html',locals())
+# @login_required #已作废
+# def update(request):
+#     if request.method=='POST':
+#         id = request.POST.get('id')
+#         number = request.POST.get('number')
+#         name = request.POST.get('name')
+#         Devicename = request.POST.get('Devicename')
+#         Areanam = request.POST.get('Areanam')
+#         Devicenumber = request.POST.get('Devicenumber')
+#         State = request.POST.get('State')
+#         Type = request.POST.get('Type')
+#         Money = request.POST.get('Money')
+#         Duration = request.POST.get('Duration')
+#         paymenttime = request.POST.get('paymenttime')
+#         endtime = request.POST.get('endtime')
+#         POnumber = request.POST.get('POnumber')
+#         Remarks = request.POST.get('Remarks')
+#         text = models.subclass_details.objects.get(pk=id)
+#         if number == '':
+#             error = "number 不能为空"
+#         return render(request,'xproject/subclass_edit.html',locals())
 
 
 def DeviceInf(request):
