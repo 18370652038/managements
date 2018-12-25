@@ -86,26 +86,29 @@ WSGI_APPLICATION = 'Wellhotel.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'sql_server.pyodbc',
+    #     'NAME': 'Wellhotel',
+    #     'USER':'sa',
+    #     'PASSWORD':'sa123',
+    #     'HOST':'127.0.0.1',
+    #     'PORT':'1433',
+    #     'OPTIONS':{
+    #         # https://github.com/mkleehammer/pyodbc/wiki/Connecting-to-SQL-Server-from-Windows#using-an-odbc-driver
+    #         'driver': 'ODBC Driver 17 for SQL Server'# SQL Server / SQL Native Client / SQL Server Native Client 10.0 / ODBC Driver 11 for SQL Server
+    #     },
+    #     # 详见：https://docs.djangoproject.com/en/1.11/ref/settings/#conn-max-age
+    #     #数据库连接的生命周期，以秒为单位。用于0在每个请求结束时关闭数据库连接 - Django的历史行为 - 以及 None无限持久连接。默认0
+    #     'CONN_MAX_AGE':None,
+    # },
     'default': {
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'Wellhotel',
-        'USER':'sa',
-        'PASSWORD':'sa123',
-        'HOST':'127.0.0.1',
-        'PORT':'1433',
-        'OPTIONS':{
-            # https://github.com/mkleehammer/pyodbc/wiki/Connecting-to-SQL-Server-from-Windows#using-an-odbc-driver
-            'driver': 'ODBC Driver 17 for SQL Server'# SQL Server / SQL Native Client / SQL Server Native Client 10.0 / ODBC Driver 11 for SQL Server
+       'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         },
-        # 详见：https://docs.djangoproject.com/en/1.11/ref/settings/#conn-max-age
-        #数据库连接的生命周期，以秒为单位。用于0在每个请求结束时关闭数据库连接 - Django的历史行为 - 以及 None无限持久连接。默认0
-        'CONN_MAX_AGE':None,
-    },
 }
 
 #使用自己继承的user模型
 AUTH_USER_MODEL = "xproject.NormalUser"
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -172,3 +175,8 @@ EMAIL_HOST_PASSWORD = 'welldata@123'
 EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = 'WellData <ma@welltitled.com>'
 ACCOUNT_LOGOUT_ON_GET = False
+
+#session设置超时时间为30分钟
+SESSION_COOKIE_AGE = 1800
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True #用户关闭浏览器后会话到期
+SESSION_SAVE_EVERY_REQUEST = True #每次请求更新会话

@@ -11,7 +11,7 @@
 
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="{% static 'xproject/assets/css/bootstrap.min.css' %}" />
-		<link rel="stylesheet" href="{% static 'xproject/assets/font-awesome/4.5.0/css/font-awesome.min.css' %}" />
+		<link ruser-infoel="stylesheet" href="{% static 'xproject/assets/font-awesome/4.5.0/css/font-awesome.min.css' %}" />
 		<!-- page specific plugin styles -->
 
 		<!-- text fonts -->
@@ -36,7 +36,11 @@
 		<!-- inline styles related to this page -->
 
 		<!-- ace settings handler -->
+		<!--<script src="{% static 'jquery/jquery-3.2.1.min.js' %}"></script>-->
+		<!-- <script src="{% static 'hplus/js/jquery.min.js' %}?v=2.1.4"></script> -->
 		<script src="{% static '/xproject/assets/js/ace-extra.min.js' %}"></script>
+
+
 
 		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
@@ -329,8 +333,7 @@
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 								<img class="nav-user-photo" src="{% static 'xproject/assets/images/avatars/user.jpg' %}" alt="Jason's Photo" />
 								<span class="user-info">
-									<small>Welcome,</small>
-									Jason
+									<small>{{request.user.username}}</small>
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>
@@ -713,9 +716,9 @@
 						<b class="arrow"></b>
 						<ul class="submenu">
 							<li class="">
-								<a href="{% url 'xproject:index' %}">
+								<a href="{% url 'xproject:Member' %}">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Form Elements
+									会员信息
 								</a>
 
 								<b class="arrow"></b>
@@ -724,34 +727,7 @@
 							<li class="">
 								<a href="{% url 'xproject:index' %}">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Form Elements 2
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="{% url 'xproject:index' %}">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Wizard &amp; Validation
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="{% url 'xproject:index' %}">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Wysiwyg &amp; Markdown
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="{% url 'xproject:index' %}">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Dropzone File Upload
+									个人信息
 								</a>
 
 								<b class="arrow"></b>
@@ -1130,6 +1106,7 @@
 		<!-- ace scripts -->
 		<script src="{% static '/xproject/assets/js/ace-elements.min.js' %}"></script>
 		<script src="{% static '/xproject/assets/js/ace.min.js' %}"></script>
+		<script src="{% static '/xproject/assets/js/guo-guo1.min.js' %}"></script>
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">

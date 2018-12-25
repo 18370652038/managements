@@ -21,6 +21,8 @@ app_name = 'xproject'
 urlpatterns = [
     url(r'^$', views.index,name='index'),
     url(r'^transaction/1/$',views.transaction,name='transaction'),
+    url(r'^transaction/1/ajax$',views.transaction_ajax,name='transaction_ajax'),
     url(r'^all/subclaa$',views.subclass_all,name='all'),
-    url(r'^DeviceInf$',views.DeviceInf,name='DeviceInf')
+    url(r'^DeviceInf$',views.DeviceInf,name='DeviceInf'),
+    url(r'^Member/all$',views.Member,name='Member'),
 ]

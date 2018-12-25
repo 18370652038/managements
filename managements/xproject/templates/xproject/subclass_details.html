@@ -12,22 +12,22 @@
         <form method="post" action="{% url 'xproject:transaction'%}">
             {% csrf_token %}
             <label>流水号</label>
-            <input type="text" name="number" value="" class="guo-input-1">
+            <input type="text" name="number" value="" class="guo-input-1" id="number_guo_ajax">
             <label>设备号</label>
-            <input type="text" name="Devicenumber" value="" class="guo-input-1">
+            <input type="text" name="Devicenumber" value="" class="guo-input-1" id="Devicenumber_guo_ajax">
             <!--<label>支付订单号：</label>-->
             <!--<input type="text" name="POnumber" value="" class="guo-input-1">-->
             <label>交易完成时间</label>
-                <input type="date" name="starttime" value="" class="guo-input-2">
-                <input type="date" name="endtime" value="" class="guo-input-2">
+                <input type="date" name="starttime" value="" class="guo-input-2" id="starttime_guo_ajax">
+                <input type="date" name="endtime" value="" class="guo-input-2" id="endtime_guo_ajax">
             <label>支付状态</label>
-            <select name="State" class="guo-select-1">
+            <select name="State" class="guo-select-1" id="State_guo_ajax">
                 <option value="">-----</option>
                 <option value="to poy">to poy</option>
                 <option value="To be paid">To be paid</option>
                 <option value="Refund">Refund</option>
             </select>
-            <input type="submit" id="guo-sou-ajax" value="搜索" />
+            <button type="button" id="guo-sou-ajax"  data-action="{% url 'xproject:transaction_ajax'%}">搜索</button>
         </form>
     </div>
 </div>
@@ -45,10 +45,10 @@
         <th class="guo-td"><center>操作</center></th>
     </tr>
         {% for subclass in subclass_s %}
-            <tr>
+            <tr class="guo-models-1">
                 <td class="guo-td-1"><center>{{ subclass.id }}</center></td>
-                <td class="guo-td-2"><center>{{ subclass.number }}</center></td>
-                <td class="guo-td"><center>{{ subclass.normalUser.username }}</center></td>
+                <td class="guo-td-2" ><center>{{ subclass.number }}</center></td>
+                <td class="guo-td" ><center>{{ subclass.normalUser.username }}</center></td>
                 <td class="guo-td"><center>{{ subclass.deviceInfo.DeviceID }}</center></td>
                 <td class="guo-td"><center>{{ subclass.State }}</center></td>
                 <td class="guo-td"><center>{{ subclass.Type }}</center></td>

@@ -13,26 +13,25 @@
                 <th class="guo-td-all"><center>流水号</center></th>
                 <th class="guo-td-all"><center>用户昵称</center></th>
                 <th class="guo-td-all"><center>设备号</center></th>
-                <th class="guo-td-all"><center>状态</center></th>
-                <th class="guo-td-all"><center>交易类型</center></th>
-                <th class="guo-td-all"><center>交易金额</center></th>
-                <th class="guo-td-all"><center>交易完成时间</center></th>
+                <th class="guo-td-all"><center>酒店名</center></th>
+                <th class="guo-td-all"><center>国家</center></th>
+                <th class="guo-td-all"><center>省份</center></th>
+                <th class="guo-td-all"><center>城市</center></th>
             </tr>
             <tr>
                 <td class="guo-td-all"><center>{{ text.id }}</center></td>
                 <td class="guo-td-all"><center>{{ text.number }}</center></td>
                 <td class="guo-td-all"><center>{{ text.normalUser.username }}</center></td>
                 <td class="guo-td-all"><center>{{ text.deviceInfo.DeviceID }}</center></td>
-                <td class="guo-td-all"><center>{{ text.State }}</center></td>
-                <td class="guo-td-all"><center>{{ text.Type }}</center></td>
-                <td class="guo-td-all"><center>{{ text.Money }}</center></td>
-                <td class="guo-td-all"><center>{{ text.endtime|date:'Y-m-d H:m' }}</center></td>
+                <td class="guo-td-all"><center>{{ text.organization.cname }}</center></td>
+                <td class="guo-td-all"><center>{{ text.organization.country }}</center></td>
+                <td class="guo-td-all"><center>{{ text.organization.province }}</center></td>
+                <td class="guo-td-all"><center>{{ text.organization.city }}</center></td>
             </tr>
 
         </table>
     </div>
-</div>
-    <div class="guo-list-all">
+        <div class="guo-list-all">
         <table class="guo-table-all">
             <tr>
                 <th class="guo-td-all-1"><center>交易开始时间</center></th>
@@ -41,8 +40,8 @@
                 <th class="guo-td-all-1"><center>交易金额</center></th>
                 <th class="guo-td-all-1"><center>交易类型</center></th>
                 <th class="guo-td-all-1"><center>每小时价钱</center></th>
-                <th class="guo-td-all-1"><center>交易金额</center></th>
-                <th class="guo-td-all-1"><center>交易完成时间</center></th>
+                <th class="guo-td-all-1"><center>交易结果状态</center></th>
+                <th class="guo-td-all-1"><center>付款订单号码</center></th>
             </tr>
             <tr>
                 <td class="guo-td-all-1"><center>{{ text.paymenttime|date:'Y-m-d H:m' }}</center></td>
@@ -50,14 +49,35 @@
                 <td class="guo-td-all-1"><center>{{ text.Duration }}秒</center></td>
                 <td class="guo-td-all-1"><center>{{ text.Money }}元</center></td>
                 <td class="guo-td-all-1"><center>{{ text.Type }}</center></td>
-                <td class="guo-td-all-1"><center>{{ text.organization.price_set.filter(organization=text.organization).price}}</center></td>
-                <td class="guo-td-all-1"><center>{{ text.Money }}</center></td>
-                <td class="guo-td-all-1"><center>{{ text.endtime|date:'Y-m-d H:m' }}</center></td>
+                <td class="guo-td-all-1"><center>{{ price }}</center></td>
+                <td class="guo-td-all-1"><center>{{ text.State }}</center></td>
+                <td class="guo-td-all-1"><center>{{ text.POnumber }}</center></td>
             </tr>
 
         </table>
     </div>
-{% comment %}
+    <div class="guo-list-all">
+        <table class="guo-table-all">
+            <tr>
+                <th class="guo-td-all"><center>区域</center></th>
+                <th class="guo-td-all"><center>地址</center></th>
+                <th class="guo-td-all"><center>酒店网址</center></th>
+                <th class="guo-td-all"><center>手机号</center></th>
+                <th class="guo-td-all"><center>房间号</center></th>
+                <th class="guo-td-all"><center>装置</center></th>
+            </tr>
+            <tr>
+                <td class="guo-td-all"><center>{{ text.organization.district }}</center></td>
+                <td class="guo-td-all"><center>{{ text.organization.address }}</center></td>
+                <td class="guo-td-all"><center>{{ text.organization.website }}</center></td>
+                <td class="guo-td-all"><center>{{ text.organization.telphone }}</center></td>
+                <td class="guo-td-all"><center>{{ text.organization.room }}</center></td>
+                <td class="guo-td-all"><center>{{ text.organization.device }}</center></td>
+            </tr>
+
+        </table>
+    </div>
+</div>
 <!--<div class="guo-from-deit">-->
     <!--<div class="guo-deit-lable-div">-->
         <!--<center style="color:red;"><h3>{{ field.errors }}</h3></center>-->
@@ -73,12 +93,7 @@
             <!--提交更改-->
         <!--</button>-->
 <!--</div>-->
-<!--</form>-->
-<!--<div class="guo-button-div">-->
-        <!--<a href="{% url 'xproject:transaction' %}" class="guo-button-ti2">-->
-            <!--返回页面-->
-            <!--</a>-->
-<!--</div>-->
-{% endcomment %}
-
+    <form method="get" action="{% url 'xproject:transaction' %}" class="guo-form-sub">
+        <center><button type="submit">返回交易记录页</button></center>
+    </form>
 {% endblock %}

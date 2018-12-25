@@ -1,0 +1,95 @@
+{% extends 'xproject/base.html' %}
+{% block title %} 用户信息 {% endblock %}
+{% block tag %} 会员管理 {% endblock %}
+{% block content %}
+<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<div class="row">
+									<div class="col-xs-12">
+										<table id="simple-table" class="table  table-bordered table-hover">
+											<thead>
+												<tr>
+													<th class="center">
+														<label class="pos-rel">
+															<input type="checkbox" class="ace" />
+															<span class="lbl"></span>
+														</label>
+													</th>
+													<th class="detail-col">序号</th>
+													<th>用户名</th>
+													<th>用户权限</th>
+													<th class="hidden-480">注册时间</th>
+
+													<th>
+														<i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
+														最后登录时间
+													</th>
+													<th class="hidden-480">Status</th>
+
+													<th></th>
+												</tr>
+											</thead>
+											{% for member in members %}
+											<tbody>
+
+												<tr>
+													<td class="center">
+														<label class="pos-rel">
+															<input type="checkbox" class="ace" />
+															<span class="lbl"></span>
+														</label>
+													</td>
+
+													<td class="center">{{ member.id }}
+													</td>
+
+													<td>
+														<a href="#">{{ member.username }}</a>
+													</td>
+													{% if member.is_superuser %}
+														<td>管理员</td>
+													{% else %}
+														<td>会员</td>
+													{% endif %}
+													<td class="hidden-480">{{ member.date_joined|date:'Y-m-d H:m' }}</td>
+													<td>{{ member.last_login|date:'Y-m-d H:m'}}</td>
+
+													<td class="hidden-480">
+														{% if member.is_authenticated %}
+															<span class="label label-sm label-warning">在线</span>
+														{% else %}
+															<span class="label label-sm label-warning">离线</span>
+														{% endif %}
+													</td>
+
+													<td>
+														<div class="hidden-sm hidden-xs btn-group">
+															<button class="btn btn-xs btn-success">
+																<i class="ace-icon fa fa-check bigger-120"></i>
+															</button>
+
+															<button class="btn btn-xs btn-info">
+																<i class="ace-icon fa fa-pencil bigger-120"></i>
+															</button>
+
+															<button class="btn btn-xs btn-danger">
+																<i class="ace-icon fa fa-trash-o bigger-120"></i>
+															</button>
+
+															<button class="btn btn-xs btn-warning">
+																<i class="ace-icon fa fa-flag bigger-120"></i>
+															</button>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+											{% endfor %}
+										</table>
+
+									</div>
+								</div>
+									</div><!-- /.span -->
+								</div><!-- /.row -->
+
+{% endblock %}
