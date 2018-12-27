@@ -1,4 +1,5 @@
 {% extends 'xproject/base.html' %}
+{% load i18n static %}
 {% block title %} subclass details {% endblock %}
 {% block tag %}交易管理{% endblock %}
 {% block content %}
@@ -53,10 +54,10 @@
                 <td class="guo-td"><center>{{ subclass.State }}</center></td>
                 <td class="guo-td"><center>{{ subclass.Type }}</center></td>
                 <td class="guo-td"><center>{{ subclass.Money }}元</center></td>
-                <td class="guo-td"><center>{{ subclass.endtime|date:'Y-m-d H:m'}}</center></td>
+                <td class="guo-td"><center>{{ subclass.endtime|date:'Y-m-d H:i'}}</center></td>
              <td class="guo-td">
                  <div>
-                     <form method="post" action="{% url 'xproject:all'%}">
+                     <form method="post" action="{% url 'xproject:all'%}" id="models_guo_from1">
                             {% csrf_token %}
                          <input  type="hidden" name="id" value="{{ subclass.id }}">
                          <center><input type="submit" value="查看详细信息"></center>
