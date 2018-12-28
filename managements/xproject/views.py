@@ -130,13 +130,8 @@ def Member_ajax(request):
             nameID = request.POST.get('nameID')
             registertime = request.POST.get('registertime')
             Jurisdiction = request.POST.get('Jurisdiction')
-            print(name)
-            print(nameID)
-            print(registertime)
-            print(Jurisdiction)
             members = models.NormalUser.objects.all()
             if name !='' and members !='' and name != None:
-                print(1)
                 members = members.filter(username=name)
             if nameID != '' and members !='':
                 members = members.filter(id=nameID)
