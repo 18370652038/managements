@@ -55,13 +55,14 @@
                 <td class="guo-td-all-1"><center>{{ sum }}秒</center></td>
                 <td class="guo-td-all-1"><center>{{ Money }}元</center></td>
                 <td class="guo-td-all-1"><center>{{ member.last_login|date:'Y-m-d H:m'}}</center></td>
-                <td class="guo-td-all-1"><center>{{  }}</center></td>
+                <!--<td class="guo-td-all-1"><center>{{ price }}</center></td>-->
                 <!--<td class="guo-td-all-1"><center>{{ price }}</center></td>-->
                 <!--<td class="guo-td-all-1"><center>{{ text.State }}</center></td>-->
                 <!--<td class="guo-td-all-1"><center>{{ text.POnumber }}</center></td>-->
             </tr>
 
         </table>
+        </div>
     <!--</div>-->
     <!--<div class="guo-list-all">-->
         <!--<table class="guo-table-all">-->
@@ -83,4 +84,7 @@
             <!--</tr>-->
 
         <!--</table>-->
+        <form method="get" action="{% url 'xproject:index' %}" class="guo-form-sub">
+        <center><button type="submit">返回主页</button></center>
+    </form>
 {% endblock %}

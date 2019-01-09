@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for Wellhotel project.
 
@@ -37,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',#这边是allauth的依赖包，必须在app和登录模块前面
+    'django.contrib.sites',
+    #这边是allauth的依赖包，必须在app和登录模块前面
 
     'xproject',
 
@@ -154,6 +156,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 
 ACCOUNT_EMAIL_REQUIRED = True
 
+
 LOGIN_REDIRECT_URL = '/'
 #登录或者注册成功进入此界面
 
@@ -180,3 +183,4 @@ ACCOUNT_LOGOUT_ON_GET = False
 SESSION_COOKIE_AGE = 1800
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True #用户关闭浏览器后会话到期
 SESSION_SAVE_EVERY_REQUEST = True #每次请求更新会话
+

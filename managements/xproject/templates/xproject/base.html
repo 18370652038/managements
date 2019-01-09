@@ -235,7 +235,7 @@
 									<ul class="dropdown-menu dropdown-navbar">
 										<li>
 											<a href="#" class="clearfix">
-												<img src="{% static 'xproject/assets/images/avatars/avatar.png' %}" class="msg-photo" alt="Alex's Avatar" />
+												<img src="{% static '/xproject/assets/images/avatars/avatar.png' %}" class="msg-photo" alt="Alex's Avatar" />
 												<span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Alex:</span>
@@ -252,7 +252,7 @@
 
 										<li>
 											<a href="#" class="clearfix">
-												<img src="{% static 'xproject/assets/images/avatars/avatar3.png' %}" class="msg-photo" alt="Susan's Avatar" />
+												<img src="{% static '/xproject/assets/images/avatars/avatar3.png' %}" class="msg-photo" alt="Susan's Avatar" />
 												<span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Susan:</span>
@@ -269,7 +269,7 @@
 
 										<li>
 											<a href="#" class="clearfix">
-												<img src="{% static 'xproject/assets/images/avatars/avatar4.png' %}" class="msg-photo" alt="Bob's Avatar" />
+												<img src="{% static '/xproject/assets/images/avatars/avatar4.png' %}" class="msg-photo" alt="Bob's Avatar" />
 												<span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Bob:</span>
@@ -286,7 +286,7 @@
 
 										<li>
 											<a href="#" class="clearfix">
-												<img src="{% static 'xproject/assets/images/avatars/avatar2.png' %}" class="msg-photo" alt="Kate's Avatar" />
+												<img src="{% static '/xproject/assets/images/avatars/avatar2.png' %}" class="msg-photo" alt="Kate's Avatar" />
 												<span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Kate:</span>
@@ -303,7 +303,7 @@
 
 										<li>
 											<a href="#" class="clearfix">
-												<img src="{% static 'xproject/assets/images/avatars/avatar5.png' %}" class="msg-photo" alt="Fred's Avatar" />
+												<img src="{% static '/xproject/assets/images/avatars/avatar5.png' %}" class="msg-photo" alt="Fred's Avatar" />
 												<span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Fred:</span>
@@ -348,7 +348,7 @@
 								</li>
 
 								<li>
-									<a href="profile.html">
+									<a href="{% url 'xproject:Member_user' request.user.id %}">
 										<i class="ace-icon fa fa-user"></i>
 										Profile
 									</a>
@@ -661,43 +661,7 @@
 							<li class="">
 								<a href="{% url 'xproject:index'%}">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Form Elements
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="{% url 'xproject:index'%}">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Form Elements 2
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="{% url 'xproject:index' %}">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Wizard &amp; Validation
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="{% url 'xproject:index' %}">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Wysiwyg &amp; Markdown
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="{% url 'xproject:index' %}">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Dropzone File Upload
+									型号1
 								</a>
 
 								<b class="arrow"></b>
@@ -725,7 +689,7 @@
 							</li>
 
 							<li class="">
-								<a href="{% url 'xproject:index' %}">
+								<a href="{% url 'xproject:Member_user' request.user.id %}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									个人信息
 								</a>
