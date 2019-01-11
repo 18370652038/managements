@@ -40,9 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     #这边是allauth的依赖包，必须在app和登录模块前面
-
     'xproject',
 
+    #xadmin
+    'xadmin',
+    'crispy_forms',
+    'reversion',
     #登录模块
     'allauth',
     'allauth.account',
@@ -134,7 +137,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us' # 中文简体:"zh-Hans", 英文:"en-us"
+LANGUAGE_CODE = 'zh-Hans' # 中文简体:"zh-Hans", 英文:"en-us"
 
 TIME_ZONE = 'Asia/Shanghai' #美国时区:'UTC', 亚洲上海:'Asia/Shanghai'
 
@@ -183,4 +186,5 @@ ACCOUNT_LOGOUT_ON_GET = False
 SESSION_COOKIE_AGE = 1800
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True #用户关闭浏览器后会话到期
 SESSION_SAVE_EVERY_REQUEST = True #每次请求更新会话
+
 
