@@ -46,11 +46,13 @@ INSTALLED_APPS = [
     'xadmin',
     'crispy_forms',
     'reversion',
+
     #登录模块
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     # 'allauth.socialaccount.providers.github',
+    #Django REST framework
 
 ]
 

@@ -27,5 +27,6 @@ urlpatterns = [
     url(r'^DeviceInf$',views.DeviceInf,name='DeviceInf'),
     url(r'^Member/all$',views.Member,name='Member'),
     url(r'^Member/user/([0-9]+)$',views.Member_user,name='Member_user'),
-    url(r'^Member/ajax$',views.Member_ajax,name='Member_ajax')
+    url(r'^Member/ajax$',views.Member_ajax,name='Member_ajax'),
+    url(r'^equipment/all$',views.DeviceInf,name='equipment'),
 ]

@@ -111,8 +111,9 @@ def subclass_all(request):
         return render(request,'xproject/subclass_all.html',locals())
 
 
-
+@login_required
 def DeviceInf(request):
+    return render(request,'xproject/equipment_all.html',locals())
     pass
 
 @login_required
