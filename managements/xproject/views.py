@@ -113,8 +113,59 @@ def subclass_all(request):
 
 @login_required
 def DeviceInf(request):
+    username = request.user.username
+    members = models.DeviceInfo.objects.all()
+    if request.user.is_superuser:
+        members = models.DeviceInfo.objects.all()
+        for member in members:
+            member.endtime = member.subclass_details_set.all().order_by('-id')[:1][0].endtime
+            member.count = len(member.subclass_details_set.all())
     return render(request,'xproject/equipment_all.html',locals())
     pass
+
+@login_required
+def DeviceInf_ajax(request):
+    if request.method == 'POST':
+        Eey = request.POST.get('Eey')
+        DeviceID = request.POST.get('DeviceID')
+        RegTimes = request.POST.get('RegTimes')
+        Organizationname = request.POST.get('Organizationname')
+        members = models.DeviceInfo.objects.all()
+        if Eey != '' and members != '':
+            members = members.filter(Eey=Eey)
+        if DeviceID != '' and members != '':
+            members = members.filter(DeviceID=DeviceID)
+        if RegTimes != '' and members != '' and  not (RegTimes is None):
+            # print(RegTimes)
+            list = RegTimes.split('-')
+            end_date = datetime.date(int(list[0]), int(list[1]), int(list[2])+1)
+            print(end_date)
+            start_date = datetime.date(int(list[0]), int(list[1]), int(list[2]))
+            print(start_date)
+            members = members.filter(RegTimes__range=(start_date, end_date))
+        if Organizationname != '' and members != '':
+            members = members.filter(organization__cname__icontains=str(Organizationname))
+        if members != '' and members != [] and not(members is None):
+            for member in members:
+                member.endtime = member.subclass_details_set.all().order_by('-id')[:1][0].endtime
+                member.count = len(member.subclass_details_set.all())
+        list = []
+        for member in members:
+            data = {
+                'id': member.id,
+                'DeviceID': member.DeviceID,
+                'cname': member.organization.cname,
+                'RegTimes': timezone.localtime(value=member.RegTimes).strftime("%Y-%m-%d %H:%M"),
+                'endtime': timezone.localtime(value=member.endtime).strftime("%Y-%m-%d %H:%M"),
+                'count': member.count,
+            }
+            list.append(data)
+        jsons = {'member': list}
+        print(jsons)
+
+        return HttpResponse(json.dumps(jsons))
+    else:
+        return render(request,'xproject/equipment_all.html',locals())
 
 @login_required
 def Member(request):

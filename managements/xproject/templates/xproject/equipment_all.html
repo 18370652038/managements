@@ -1,27 +1,29 @@
 {% extends 'xproject/base.html' %}
-{% block title %} 用户信息 {% endblock %}
-{% block tag %} 会员管理 {% endblock %}
+{% block title %} 设备信息 {% endblock %}
+{% block tag %} 设备管理 {% endblock %}
 {% block content %}
 <div class="guo-subclass" style="width:99%;left:1%;">
     <h1><a href="#" >设备管理</a></h1>
 </div>
 <div class="guo-sou-1" style="left:1%;">
     <div class="guo-sou-3">
-        <form method="post" action="{% url 'xproject:transaction'%}">
+        <form method="post" action="{% url 'xproject:DeviceInf_ajax'%}">
             {% csrf_token %}
-            <label>用户名</label>
-            <input type="text" name="name" value="" class="guo-input-1" id="name_guo_ajax">
+            <label>设备识别码</label>
+            	<input type="text" name="Eey" value="" class="guo-input-1" id="Eey_guo_ajax">
             <label>设备ID</label>
-            <input type="text" name="nameID" value="" class="guo-input-1" id="nameID_guo_ajax">
-            <label>用户注册时间</label>
-                <input type="date" name="registertime" value="" class="guo-input-2" id="registertime_guo_ajax">
-            <label>用户权限</label>
-            <select name="Jurisdiction" class="guo-select-1" id="Jurisdiction_guo_ajax">
-                <option value="">-----</option>
-                <option value="administrator">管理员</option>
-                <option value="member">会员</option>
-            </select>
-            <button type="button" id="guo-user-ajax" style="width:5%;" data-action="{% url 'xproject:Member_ajax'%}">搜索</button>
+            <input type="text" name="DeviceID" value="" class="guo-input-1" id="DeviceID_guo_ajax">
+            <label>设备注册时间</label>
+                <input type="date" name="RegTimes" value="" class="guo-input-2" id="RegTimes_guo_ajax">
+            <!--<label>用户权限</label>-->
+            <!--<select name="Jurisdiction" class="guo-select-1" id="Jurisdiction_guo_ajax">-->
+                <!--<option value="">-&#45;&#45;&#45;&#45;</option>-->
+                <!--<option value="administrator">管理员</option>-->
+                <!--<option value="member">会员</option>-->
+            <!--</select>-->
+			<label>商家名称</label>
+				<input type="text" name="Organizationname" value="" class="guo-input-1" id="Organizationname_guo_ajaxs">
+            <button type="button" id="guo-equipment-ajax" style="width:5%;" data-action="{% url 'xproject:DeviceInf_ajax'%}">搜索</button>
         </form>
     </div>
 </div>
@@ -40,19 +42,20 @@
 														</label>
 													</th>
 													<th class="detail-col" style="width:4%;">序号</th>
-													<th style="width:12%;">用户名</th>
-													<th style="width:12%;">用户权限</th>
-													<th class="hidden-480" style="width:15%;">注册时间</th>
+													<th style="width:12%;">设备ID</th>
+													<th style="width:12%;">所属商家</th>
+													<th class="hidden-480" style="width:15%;">设备注册时间</th>
 
 													<th class="guo-size-1" style="width:15%;">
 														<i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
-														最后登录时间
+														最后使用时间
 													</th>
-													<th class="hidden-480 guo-size-1" style="width:10%;">Status</th>
+													<th class="hidden-480 guo-size-1" style="width:10%;">使用次数</th>
 
 													<th class="guo-size-1"></th>
 												</tr>
 											</thead>
+											{% if members %}
 											{% for member in members %}
 											<tbody>
 
@@ -68,22 +71,15 @@
 													</td>
 
 													<td>
-														<a href="#">{{ member.username }}</a>
+														<a href="#">{{ member.DeviceID }}</a>
 													</td>
-													{% if member.is_superuser %}
-														<td>管理员</td>
-													{% else %}
-														<td>会员</td>
-													{% endif %}
-													<td class="hidden-480">{{ member.date_joined|date:'Y-m-d H:m' }}</td>
-													<td>{{ member.last_login|date:'Y-m-d H:m'}}</td>
+													<td>{{ member.organization.cname }}</td>
+
+													<td class="hidden-480">{{ member.RegTimes|date:'Y-m-d H:i' }}</td>
+													<td>{{ member.endtime|date:'Y-m-d H:i'}}</td>
 
 													<td class="hidden-480">
-														{% if member.is_authenticated %}
-															<span class="label label-sm label-warning">在线</span>
-														{% else %}
-															<span class="label label-sm label-warning">离线</span>
-														{% endif %}
+														{{ member.count }}次
 													</td>
 
 													<td>
@@ -103,6 +99,7 @@
 												</tr>
 											</tbody>
 											{% endfor %}
+											{% endif %}
 										</table>
 
 									</div>

@@ -29,4 +29,5 @@ urlpatterns = [
     url(r'^Member/user/([0-9]+)$',views.Member_user,name='Member_user'),
     url(r'^Member/ajax$',views.Member_ajax,name='Member_ajax'),
     url(r'^equipment/all$',views.DeviceInf,name='equipment'),
+    url(r'^DeviceInf/ajax$',views.DeviceInf_ajax,name='DeviceInf_ajax'),
 ]

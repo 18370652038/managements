@@ -75,8 +75,8 @@
 													{% else %}
 														<td>会员</td>
 													{% endif %}
-													<td class="hidden-480">{{ member.date_joined|date:'Y-m-d H:m' }}</td>
-													<td>{{ member.last_login|date:'Y-m-d H:m'}}</td>
+													<td class="hidden-480">{{ member.date_joined|date:'Y-m-d H:i' }}</td>
+													<td>{{ member.last_login|date:'Y-m-d H:i'}}</td>
 
 													<td class="hidden-480">
 														{% if member.is_authenticated %}

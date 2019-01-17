@@ -1,5 +1,5 @@
-{% load staticfiles %}
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -64,9 +64,12 @@
 				</button>
 
 				<div class="navbar-header pull-left">
+					<img src="{% static 'xproject/img/logo.png' %}" style="width:38%;float:left;">
 					<a href="{% url 'xproject:index' %}" class="navbar-brand">
+
 						<small>
 							<i class="fa fa-leaf"></i>
+
 							Wellhotel
 						</small>
 					</a>
@@ -1032,7 +1035,7 @@
 				<div class="footer-inner">
 				</div>
 			</div>
-			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+			<a href="#" id="btn-scroll-up-1" class="btn-scroll-up btn btn-sm btn-inverse">
 				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
 			</a>
 		</div>
