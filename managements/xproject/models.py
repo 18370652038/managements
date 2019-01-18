@@ -6,7 +6,7 @@ import datetime
 # Create your models here.
 
 
-#客户信息
+#商家信息
 class Organization(models.Model):
     cname = models.CharField(verbose_name=_("name"),null=True,max_length=50)
     ename = models.CharField(verbose_name=_("English Name"),null=True,max_length=50)
@@ -35,6 +35,7 @@ class NormalUser(AbstractUser):
     email = models.EmailField(verbose_name=_("email"),max_length=50,null=True)
     AlarmMOB = models.IntegerField(verbose_name=_("AlarmMOB"),null=True)
     AlarmMail = models.EmailField(verbose_name=_("AlarmMail"),max_length=50,null=True)
+    OrganizationID = models.IntegerField(verbose_name=_("OrganizationID"),max_length=50,null=True)
 
     class Meta:
         db_table = 'user'

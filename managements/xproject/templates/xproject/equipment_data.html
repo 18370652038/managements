@@ -1,39 +1,31 @@
 {% extends 'xproject/base.html' %}
-{% block title %} {{ member.username }}用户信息 {% endblock %}
-{% block tag %} 用户信息 {% endblock %}
+{% block title %} 设备信息 {% endblock %}
+{% block tag %} 设备信息 {% endblock %}
 {% block content %}
 <div class="guo-edit-title">
-    <h3>用户信息界面</h3>
+    <h3>设备信息界面</h3>
 </div>
     <div class="guo-list-all">
         <table class="guo-table-all">
             <tr>
-                <th class="guo-td-all"><center>用户id</center></th>
-                <th class="guo-td-all"><center>用户昵称</center></th>
-                <th class="guo-td-all"><center>用户邮箱</center></th>
-                <th class="guo-td-all"><center>用户手机号</center></th>
-                <th class="guo-td-all"><center>用户QQ</center></th>
-                <th class="guo-td-all"><center>用户微信</center></th>
-                <th class="guo-td-all"><center>用户权限</center></th>
-                <th class="guo-td-all"><center>用户状态</center></th>
+                <th class="guo-td-all"><center>序号</center></th>
+                <th class="guo-td-all"><center>设备ID</center></th>
+                <th class="guo-td-all"><center>设备秘钥</center></th>
+                <th class="guo-td-all"><center>设备秘钥MD5加密</center></th>
+                <th class="guo-td-all"><center>设备秘钥进制值</center></th>
+                <th class="guo-td-all"><center>设备MAC地址</center></th>
+                <th class="guo-td-all"><center>SIM卡编号</center></th>
+                <th class="guo-td-all"><center>设备注册时间</center></th>
             </tr>
             <tr>
                 <td class="guo-td-all"><center>{{ member.id }}</center></td>
-                <td class="guo-td-all"><center>{{ member.username }}</center></td>
-                <td class="guo-td-all"><center>{{ member.email }}</center></td>
-                <td class="guo-td-all"><center>{{ member.mob }}</center></td>
-                <td class="guo-td-all"><center>{{ member.QQ }}</center></td>
-                <td class="guo-td-all"><center>{{ member.Weixin }}</center></td>
-                {% if member.is_superuser %}
-                    <td class="guo-td-all"><center>管理员</center></td>
-                {% else %}
-                    <td class="guo-td-all"><center>会员</center></td>
-                {% endif %}
-                {% if member.is_authenticated %}
-                    <td class="guo-td-all"><center>在线</center></td>
-                {% else %}
-                    <td class="guo-td-all"><center>离线</center></td>
-                {% endif %}
+                <td class="guo-td-all"><center>{{ member.DeviceID }}</center></td>
+                <td class="guo-td-all"><center>{{ member.Eey }}</center></td>
+                <td class="guo-td-all"><center>{{ member.eKey }}</center></td>
+                <td class="guo-td-all"><center>{{ member.ADDR }}</center></td>
+                <td class="guo-td-all"><center>{{ member.MACaddress }}</center></td>
+                <td class="guo-td-all"><center>{{ member.CCID }}</center></td>
+                <td class="guo-td-all"><center>{{ member.RegTimes }}</center></td>
             </tr>
 
         </table>
@@ -41,20 +33,20 @@
         <div class="guo-list-all">
         <table class="guo-table-all">
             <tr>
-                <th class="guo-td-all-1"><center>用户交易总次数</center></th>
-                <th class="guo-td-all-1"><center>用户交易总时长</center></th>
-                <th class="guo-td-all-1"><center>用户总消费金额</center></th>
-                <th class="guo-td-all-1"><center>用户最近一次消费时间</center></th>
+                <!--<th class="guo-td-all-1"><center>用户交易总次数</center></th>-->
+                <!--<th class="guo-td-all-1"><center>用户交易总时长</center></th>-->
+                <!--<th class="guo-td-all-1"><center>用户总消费金额</center></th>-->
+                <!--<th class="guo-td-all-1"><center>用户最近一次消费时间</center></th>-->
                 <!--<th class="guo-td-all-1"><center>用户最近一次去的酒店</center></th>-->
                 <!--<th class="guo-td-all-1"><center>每小时价钱</center></th>-->
                 <!--<th class="guo-td-all-1"><center>交易结果状态</center></th>-->
                 <!--<th class="guo-td-all-1"><center>付款订单号码</center></th>-->
             </tr>
             <tr>
-                <td class="guo-td-all-1"><center>{{ number }}次</center></td>
-                <td class="guo-td-all-1"><center>{{ sum }}秒</center></td>
-                <td class="guo-td-all-1"><center>{{ Money }}元</center></td>
-                <td class="guo-td-all-1"><center>{{ member.last_login|date:'Y-m-d H:m'}}</center></td>
+                <!--<td class="guo-td-all-1"><center>{{ number }}次</center></td>-->
+                <!--<td class="guo-td-all-1"><center>{{ sum }}秒</center></td>-->
+                <!--<td class="guo-td-all-1"><center>{{ Money }}元</center></td>-->
+                <!--<td class="guo-td-all-1"><center>{{ member.last_login|date:'Y-m-d H:m'}}</center></td>-->
                 <!--<td class="guo-td-all-1"><center>{{ price }}</center></td>-->
                 <!--<td class="guo-td-all-1"><center>{{ price }}</center></td>-->
                 <!--<td class="guo-td-all-1"><center>{{ text.State }}</center></td>-->
@@ -84,7 +76,7 @@
             <!--</tr>-->
 
         <!--</table>-->
-        <form method="get" action="{% url 'xproject:Member' %}" class="guo-form-sub">
-        <center><button type="submit">返回用户查询页</button></center>
+        <form method="get" action="{% url 'xproject:equipment' %}" class="guo-form-sub">
+        <center><button type="submit">返回设备查询页</button></center>
     </form>
 {% endblock %}

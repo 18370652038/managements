@@ -168,6 +168,18 @@ def DeviceInf_ajax(request):
         return render(request,'xproject/equipment_all.html',locals())
 
 @login_required
+def DeviceInf_get(request,id):
+    try:
+        member = models.DeviceInfo.objects.get(pk=id)
+    except:
+        member = ''
+    if member != '':
+        return render(request, 'xproject/equipment_data.html', locals())
+    else:
+        redirect('xproject:equipment')
+
+
+@login_required
 def Member(request):
     username = request.user.username
     members = models.NormalUser.objects.filter(username=username)
@@ -250,4 +262,29 @@ def Member_user(request,id):
                 return render(request,'xproject/user_deta.html',locals())
         else:
             return redirect('xproject:Member')
+
+@login_required
+def Organization(request):
+    if request.user.is_superuser:
+        members = models.Organization.objects.all()
+        for member in members:
+
+            pass
+        return render(request, 'xproject/Organization.html', locals())
+    else:
+        name = request.user.username
+        print(name)
+        try:
+            Organization_is = models.NormalUser.objects.get(username=name)
+        except:
+            return redirect('xproject:index')
+        if Organization_is.OrganizationID:
+            print(Organization_is.OrganizationID)
+            try:
+                members = models.Organization.objects.get(pk=Organization_is.OrganizationID)
+            except:
+                return redirect('xproject:index')
+            return render(request,'xproject/Organization.html',locals())
+        else:
+            return redirect('xproject:index')
 

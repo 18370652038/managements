@@ -30,4 +30,6 @@ urlpatterns = [
     url(r'^Member/ajax$',views.Member_ajax,name='Member_ajax'),
     url(r'^equipment/all$',views.DeviceInf,name='equipment'),
     url(r'^DeviceInf/ajax$',views.DeviceInf_ajax,name='DeviceInf_ajax'),
+    url(r'^DeviceInf/([0-9]+)$',views.DeviceInf_get,name='DeviceInf_get'),
+    url(r'^Organization$',views.Organization,name='Organization'),
 ]

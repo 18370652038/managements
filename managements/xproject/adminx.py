@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # from django.contrib import admin
+
 import xadmin
 from .models import *
 from xadmin import views
